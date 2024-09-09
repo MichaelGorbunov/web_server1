@@ -33,7 +33,7 @@ class MyServer(BaseHTTPRequestHandler):
             self.end_headers()
 
             # Читаем содержимое HTML-файла с контактами
-            with open("main.html", "r") as f:
+            with open("contacts.html", "r",encoding="utf-8") as f:
                 html_content = f.read()
             self.wfile.write(bytes(html_content, "utf-8"))
         else:
