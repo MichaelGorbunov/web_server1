@@ -11,7 +11,7 @@ https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/
 - Клонируйте репозиторий на свой компьютер:
 
 ```
-https://github.com/MichaelGorbunov/CW_5_DataBase
+https://github.com/MichaelGorbunov/web_server1/
 ```
 
 
