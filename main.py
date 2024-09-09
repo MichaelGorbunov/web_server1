@@ -1,21 +1,14 @@
 import os
-from dotenv import load_dotenv
-from http.server import BaseHTTPRequestHandler, HTTPServer
-
-
-
 # Импорт встроенной библиотеки для работы веб-сервера
 from http.server import BaseHTTPRequestHandler, HTTPServer
-# import time
 
-
-
+from dotenv import load_dotenv
 
 
 class MyServer(BaseHTTPRequestHandler):
     """
-        Специальный класс, который отвечает за
-        обработку входящих запросов от клиентов
+    Специальный класс, который отвечает за
+    обработку входящих запросов от клиентов
     """
 
     # def do_GET(self):
@@ -33,7 +26,7 @@ class MyServer(BaseHTTPRequestHandler):
             self.end_headers()
 
             # Читаем содержимое HTML-файла с контактами
-            with open("contacts.html", "r",encoding="utf-8") as f:
+            with open("contacts.html", "r", encoding="utf-8") as f:
                 html_content = f.read()
             self.wfile.write(bytes(html_content, "utf-8"))
         else:
@@ -44,9 +37,8 @@ class MyServer(BaseHTTPRequestHandler):
             self.wfile.write(bytes("<h1>404 Not Found</h1>", "utf-8"))
 
     def do_POST(self):
-
-        """ Метод обработки входящих  POST-запросов """
-        content_length = int(self.headers['Content-Length'])
+        """Метод обработки входящих  POST-запросов"""
+        content_length = int(self.headers["Content-Length"])
         body = self.rfile.read(content_length)
         print(body)
         self.send_response(200)
