@@ -2,16 +2,14 @@ import os
 from dotenv import load_dotenv
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-load_dotenv()
+
 
 # Импорт встроенной библиотеки для работы веб-сервера
 from http.server import BaseHTTPRequestHandler, HTTPServer
 # import time
 
-# Для начала определим настройки запуска
-host_name = os.getenv("HOST_NAME")
-srv_port = int(os.getenv("SERVER_PORT"))
-print(host_name, srv_port)
+
+
 
 
 class MyServer(BaseHTTPRequestHandler):
@@ -56,6 +54,11 @@ class MyServer(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
+    load_dotenv()
+    # Для начала определим настройки запуска
+    host_name = os.getenv("HOST_NAME")
+    srv_port = int(os.getenv("SERVER_PORT"))
+    # print(host_name, srv_port)
     # Инициализация веб-сервера, который будет по заданным параметрах в сети
     # принимать запросы и отправлять их на обработку специальному классу, который был описан выше
     webServer = HTTPServer((host_name, srv_port), MyServer)
