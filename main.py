@@ -6,7 +6,7 @@ load_dotenv()
 
 # Импорт встроенной библиотеки для работы веб-сервера
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import time
+# import time
 
 # Для начала определим настройки запуска
 host_name = os.getenv("HOST_NAME")
