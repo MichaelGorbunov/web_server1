@@ -1,23 +1,14 @@
 import os
-from dotenv import load_dotenv
-from http.server import BaseHTTPRequestHandler, HTTPServer
-
-load_dotenv()
-
 # Импорт встроенной библиотеки для работы веб-сервера
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import time
 
-# Для начала определим настройки запуска
-host_name = os.getenv("HOST_NAME")
-srv_port = int(os.getenv("SERVER_PORT"))
-print(host_name, srv_port)
+from dotenv import load_dotenv
 
 
 class MyServer(BaseHTTPRequestHandler):
     """
-        Специальный класс, который отвечает за
-        обработку входящих запросов от клиентов
+    Специальный класс, который отвечает за
+    обработку входящих запросов от клиентов
     """
 
     # def do_GET(self):
@@ -35,7 +26,7 @@ class MyServer(BaseHTTPRequestHandler):
             self.end_headers()
 
             # Читаем содержимое HTML-файла с контактами
-            with open("main.html", "r") as f:
+            with open("contacts.html", "r", encoding="utf-8") as f:
                 html_content = f.read()
             self.wfile.write(bytes(html_content, "utf-8"))
         else:
@@ -46,9 +37,8 @@ class MyServer(BaseHTTPRequestHandler):
             self.wfile.write(bytes("<h1>404 Not Found</h1>", "utf-8"))
 
     def do_POST(self):
-
-        """ Метод обработки входящих  POST-запросов """
-        content_length = int(self.headers['Content-Length'])
+        """Метод обработки входящих  POST-запросов"""
+        content_length = int(self.headers["Content-Length"])
         body = self.rfile.read(content_length)
         print(body)
         self.send_response(200)
@@ -56,6 +46,11 @@ class MyServer(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
+    load_dotenv()
+    # Для начала определим настройки запуска
+    host_name = os.getenv("HOST_NAME")
+    srv_port = int(os.getenv("SERVER_PORT"))
+    # print(host_name, srv_port)
     # Инициализация веб-сервера, который будет по заданным параметрах в сети
     # принимать запросы и отправлять их на обработку специальному классу, который был описан выше
     webServer = HTTPServer((host_name, srv_port), MyServer)
